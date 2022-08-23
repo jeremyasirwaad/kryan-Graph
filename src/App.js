@@ -3,6 +3,7 @@ import "./App.css";
 import { Barchart1 } from "./charts/Barchart1";
 import { Landing } from "./Landing";
 
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
 	return (

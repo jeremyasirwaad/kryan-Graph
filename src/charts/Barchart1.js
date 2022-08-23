@@ -9,8 +9,32 @@ import {
 	Bar,
 	ResponsiveContainer
 } from "recharts";
-
+import ReactCohortGraph from "react-cohort-graph";
+// import cohortdata from "./cohort.json";
 export const Barchart1 = () => {
+	const cohortdata = {
+		".": {
+			"2021-1": [42, 0, 0, 1, 0, 1, 0],
+			"2021-2": [176, 3, 0, 1, 1, 0],
+			"2021-3": [62, 1, 0, 0, 0],
+			"2021-4": [69, 2, 1, 1],
+			"2022-1": [242, 8, 0],
+			"2022-2": [7766, 119],
+			"2022-3": [3315]
+		},
+		weeks: {
+			week1: [200, 10, 20, 30, 40, 10, 20, 20],
+			week2: [300, 200, 150, 50, 20, 20, 90, 100],
+			week3: [200, 110, 150, 50, 10, 20, 30, 40]
+		},
+		months: {
+			month1: [200, 10, 20, 30, 40, 10, 20, 20],
+			month2: [300, 200, 150, 50, 20, 20, 90, 100],
+			month3: [200, 110, 150, 50, 10, 20, 30, 40],
+			month4: [100, 10, 10, 50, 20, 20, 60, 0]
+		}
+	};
+
 	const data = [
 		{
 			name: "LED TV",
@@ -236,6 +260,14 @@ export const Barchart1 = () => {
 					{" "}
 					#
 				</button>
+			</div>
+			<div style={{ width: "770px", marginTop: "120px" }}>
+				<ReactCohortGraph
+					// keyCellColor="#f5222d"
+					shadeColor="#f5222d"
+					data={cohortdata}
+					defaultValueType={"value"}
+				></ReactCohortGraph>
 			</div>
 		</div>
 	);
