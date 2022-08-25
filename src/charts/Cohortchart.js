@@ -50,7 +50,7 @@ export const Cohortchart = () => {
 	return (
 		<div>
 			<div style={{ width: "250px", margin: "20px" }}>
-				<Select
+				{/* <Select
 					options={options}
 					defaultValue={"#"}
 					onChange={(e) => {
@@ -63,7 +63,7 @@ export const Cohortchart = () => {
 							setMatter("rupee");
 						}
 					}}
-				/>
+				/> */}
 			</div>
 			<div style={{ width: "770px", margin: "20px" }}>
 				{matter === "value" && (
@@ -100,6 +100,72 @@ export const Cohortchart = () => {
 					console.log(matter);
 				}}
 			></button> */}
+			<div
+				className="buttons"
+				style={{
+					// marginLeft: "200px",
+					width: "430px",
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "space-between",
+					marginTop: "40px"
+				}}
+			>
+				<button
+					style={{
+						marginLeft: "70px",
+						border: "none",
+						backgroundColor: "#ff4d4f",
+						color: "white",
+						width: "60px",
+						height: "25px",
+						borderRadius: "2px",
+						fontSize: "18px",
+						cursor: "pointer"
+					}}
+					onClick={() => {
+						setMatter("value");
+						// setBarccolo("#1890ff");
+					}}
+				>
+					#
+				</button>
+				<button
+					style={{
+						border: "none",
+						backgroundColor: "#a0d911",
+						color: "black",
+						width: "60px",
+						height: "25px",
+						borderRadius: "2px",
+						fontSize: "18px",
+						cursor: "pointer"
+					}}
+					onClick={() => {
+						setMatter("percent");
+					}}
+				>
+					%
+				</button>
+				<button
+					style={{
+						border: "none",
+						backgroundColor: "#1890ff",
+						color: "white",
+						width: "60px",
+						height: "25px",
+						borderRadius: "2px",
+						fontSize: "18px",
+						cursor: "pointer"
+					}}
+					onClick={() => {
+						setMatter("rupee");
+					}}
+				>
+					{" "}
+					₹
+				</button>
+			</div>
 		</div>
 	);
 };
