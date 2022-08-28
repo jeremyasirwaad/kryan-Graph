@@ -1,8 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactCohortGraph from "react-cohort-graph";
 import Select from "react-select";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export const Cohortchart = () => {
+	const [data1, setdata1] = useState({});
+	const [loading, setLoading] = useState(true);
+
+	const getdata1 = async () => {
+		var fadata = await fetch("https://fdlr19.deta.dev/cohort_value")
+			.then((res) => res.json())
+			.then((result) => {
+				console.log({
+					".": result
+				});
+				setdata1({
+					"#": result
+				});
+				setLoading(false);
+			});
+	};
+
+	const getdata2 = async () => {
+		var fadata = await fetch("https://fdlr19.deta.dev/cohort_per")
+			.then((res) => res.json())
+			.then((result) => {
+				console.log({
+					".": result
+				});
+				setdata1({
+					"%": result
+				});
+				setLoading(false);
+			});
+	};
+
+	const getdata3 = async () => {
+		var fadata = await fetch("https://fdlr19.deta.dev/cohort_amount")
+			.then((res) => res.json())
+			.then((result) => {
+				console.log({
+					".": result
+				});
+				setdata1({
+					"₹": result
+				});
+				setLoading(false);
+			});
+	};
+
+	useEffect(() => {
+		getdata1();
+		console.log(cohortdata);
+	}, []);
+
 	const [matter, setMatter] = useState("value");
 
 	const options = [
@@ -67,31 +118,79 @@ export const Cohortchart = () => {
 			</div>
 			<div style={{ width: "770px", margin: "20px" }}>
 				{matter === "value" && (
-					<ReactCohortGraph
-						// keyCellColor="#f5222d"
-						shadeColor="#f5222d"
-						data={cohortdata}
-						defaultValueType={"value"}
-					></ReactCohortGraph>
+					<div>
+						{loading === false ? (
+							<ReactCohortGraph
+								// keyCellColor="#f5222d"
+								shadeColor="#f5222d"
+								data={data1}
+								defaultValueType={"value"}
+							></ReactCohortGraph>
+						) : (
+							<div
+								style={{
+									height: "300px",
+									width: "100%",
+									display: "flex",
+									alignItems: "center",
+									justifyContent: "center"
+								}}
+							>
+								<BeatLoader size={15} color={"indigo"} />
+							</div>
+						)}
+					</div>
 				)}
 
-				{/* <div style={{ margin: "40px" }}></div> */}
 				{matter === "percent" && (
-					<ReactCohortGraph
-						// keyCellColor="#f5222d"
-						shadeColor="#a0d911"
-						data={cohortdata2}
-						defaultValueType={"percent"}
-					></ReactCohortGraph>
+					<div>
+						{loading === false ? (
+							<ReactCohortGraph
+								// keyCellColor="#f5222d"
+								shadeColor="#a0d911"
+								data={data1}
+								defaultValueType={"value"}
+							></ReactCohortGraph>
+						) : (
+							<div
+								style={{
+									height: "300px",
+									width: "100%",
+									display: "flex",
+									alignItems: "center",
+									justifyContent: "center"
+								}}
+							>
+								<BeatLoader size={15} color={"indigo"} />
+							</div>
+						)}
+					</div>
 				)}
 
 				{matter === "rupee" && (
-					<ReactCohortGraph
-						// keyCellColor="#f5222d"
-						shadeColor="#1890ff"
-						data={cohortdata3}
-						defaultValueType={"value"}
-					></ReactCohortGraph>
+					<div>
+						{loading === false ? (
+							<ReactCohortGraph
+								// keyCellColor="#f5222d"
+
+								shadeColor="#1890ff"
+								data={data1}
+								defaultValueType={"value"}
+							></ReactCohortGraph>
+						) : (
+							<div
+								style={{
+									height: "300px",
+									width: "100%",
+									display: "flex",
+									alignItems: "center",
+									justifyContent: "center"
+								}}
+							>
+								<BeatLoader size={15} color={"indigo"} />
+							</div>
+						)}
+					</div>
 				)}
 			</div>
 			{/* <button
@@ -124,7 +223,10 @@ export const Cohortchart = () => {
 						cursor: "pointer"
 					}}
 					onClick={() => {
+						setLoading(true);
 						setMatter("value");
+						getdata1();
+
 						// setBarccolo("#1890ff");
 					}}
 				>
@@ -142,7 +244,9 @@ export const Cohortchart = () => {
 						cursor: "pointer"
 					}}
 					onClick={() => {
+						setLoading(true);
 						setMatter("percent");
+						getdata2();
 					}}
 				>
 					%
@@ -159,7 +263,9 @@ export const Cohortchart = () => {
 						cursor: "pointer"
 					}}
 					onClick={() => {
+						setLoading(true);
 						setMatter("rupee");
+						getdata3();
 					}}
 				>
 					{" "}
