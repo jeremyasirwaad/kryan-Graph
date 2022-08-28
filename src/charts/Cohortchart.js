@@ -203,7 +203,7 @@ export const Cohortchart = () => {
 				className="buttons"
 				style={{
 					// marginLeft: "200px",
-					width: "430px",
+					width: "720px",
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "space-between",
